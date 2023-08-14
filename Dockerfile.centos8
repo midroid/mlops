@@ -1,0 +1,15 @@
+FROM centos:8
+
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+# RUN sudo dnf --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
+# RUN sudo dnf distro-sync
+
+RUN dnf install -y python39
+
+# RUN pip install pytest
+
+# Use single layer, reduces size
+RUN apk add --no-cache python3 && python3 -m ensurepip && pip3 install pytest
+
+ENTRYPOINT [ "/bin/bash" ]
