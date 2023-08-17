@@ -3,3 +3,6 @@ pytest
 pytest-cov
 flake8
 black
+pandas
+requests
+azureml-core
